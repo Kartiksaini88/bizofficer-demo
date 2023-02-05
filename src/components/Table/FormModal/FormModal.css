@@ -1,0 +1,17 @@
+form > div{
+    width: 50%;
+    
+}
+
+form{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.forminput{
+    height: 35px;
+    width: 250px;
+    margin: 10px;
+    border: 1.3px solid rgb(203,203,203);
+    border-radius: 2px;
+}

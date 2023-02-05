@@ -1,0 +1,14 @@
+.container{
+    display:Flex;
+    gap:10;
+    justify-content:space-between;  
+}
+
+.container > div  {
+    width: 25%;
+}
+
+.spantwo{
+   text-align: right;
+}
+
