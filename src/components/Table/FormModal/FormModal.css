@@ -1,17 +1,28 @@
 form > div{
     width: 50%;
     
+    
 }
 
+.container{
+    margin-top: -40px;
+}
 form{
     display: flex;
-    justify-content: space-evenly;
+    justify-content:space-between
+
+}
+.p{
+    position: relative;
+    bottom: 5%;
+    margin-left: 10px;
 }
 
 .forminput{
     height: 35px;
-    width: 250px;
-    margin: 10px;
+    width: 90%;
+    margin: 5px;
     border: 1.3px solid rgb(203,203,203);
-    border-radius: 2px;
+    border-radius: 4px;
+    padding-left: 1rem;
 }

@@ -21,3 +21,8 @@
 .search:focus{
     outline: 2px solid rgb(11,95,202);
 }
+
+.radiobtn{
+    width: 100px;
+    height: 20px;
+}

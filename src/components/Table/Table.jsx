@@ -13,7 +13,16 @@ import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
 import TableChartSharpIcon from "@mui/icons-material/TableChartSharp";
 import BasicModal from "./Modal/Modal";
 import FormModal from "./FormModal/FormModal";
+import { Radio } from "@mui/material";
+import BasicSelect from "./Select/Select";
 const columns = [
+  { field:"",headerName:"",
+   renderCell:(cellValue)=>{
+    return(
+      <input type={'radio'} name="row" className="radiobtn"></input>
+    )
+   }
+},
   { field: "id", headerName: "#", width: 90 },
   {
     field: "Case_number",
@@ -197,46 +206,45 @@ const cases = [
     text: "All Cases",
   },
   {
-    text: "Open Cases",
+    text: "Supervisor",
   },
   {
-    text: "Closed Cases",
+    text: "Estimator",
   },
   {
-    text: "Resolved Cases",
+    text: "Engineer",
   },
   {
-    text: "Billable Cases",
+    text: "Construction Worker",
   },
   {
-    text: "Open Package Cases",
+    text: "Surveyor",
   },
   {
-    text: "Emergency Cases",
+    text: "Construction Expeditor",
   },
   {
-    text: "Unassigned Cases",
+    text: "Architect",
   },
   {
-    text: "Unassigned Package Cases",
+    text: "Construction Manager",
   },
   {
-    text: "Overdue Cases",
+    text: "Construction Worker",
   },
   {
-    text: "Cases Due Today",
+    text: "Estimator",
   },
   {
-    text: "Cases Due Tomorrow",
+    text: "Electrician",
   },
   {
-    text: "Cases Next 7 Days",
+    text: "Subcontractor",
   },
   {
-    text: "All Cases",
+    text: "Project Manager",
   },
 ];
-
 export default function DataTable() {
   const [data, setdata] = React.useState(Tabledata);
   const [OneData, setOneData] = React.useState(0);
@@ -247,7 +255,7 @@ export default function DataTable() {
   const handleClose = () => setOpen(false);
   const handleOpenForm = () => setOpenFrom(true);
   const handleCloseForm = () => setOpenFrom(false);
-
+  const [edit, setEdit] = React.useState(false)
   const deleteRow = (id) => {
     setdata(data.filter((e) => e.id !== id));
   };
@@ -295,11 +303,24 @@ export default function DataTable() {
     }
   };
 
+
+  const editdata = () =>{
+    setEdit(!edit)
+    handleOpenForm()
+  }
+
   const getData = (e, formdata) => {
     e.preventDefault();
-
+   if(formdata !== null){
     setdata([...data, formdata]);
     handleCloseForm();
+    setEdit(false)
+   }
+   else{
+    return
+   }
+    
+   
   };
   return (
     <Box sx={{ height: 590, width: "100%" }}>
@@ -317,10 +338,10 @@ export default function DataTable() {
         handleOpen={handleOpen}
       ></BasicModal>
       <div className="select-div">
-        <Select data={channel} lable={"Channels"}></Select>
-        <Select data={caseType} lable={"Type"}></Select>
-        <Select data={status} lable={"Status"}></Select>
-        <Select data={cases} lable={"Cases"}></Select>
+        <BasicSelect data={channel}  lable={"Channels"}></BasicSelect>
+        <BasicSelect data={caseType}    lable={"Type"}></BasicSelect>
+        <BasicSelect data={status}    lable={"Status"}></BasicSelect>
+        <BasicSelect data={cases}   lable={"Cases"}></BasicSelect>
         <input
           type="text"
           className="search"
@@ -371,6 +392,7 @@ export default function DataTable() {
           {OneData !== 0 ? (
             <>
               <BorderColorSharpIcon
+              onClick={()=>editdata(OneData.id)}
                 sx={{
                   height: 50,
                   textAlign: "center",
@@ -404,9 +426,8 @@ export default function DataTable() {
       <DataGrid
         rows={data}
         columns={columns}
-        checkboxSelection
         onCellClick={(e) => setOneData(e.row)}
-        sx={{ fontSize: 11, textAlign: "left" }}
+        sx={{ fontSize: 11, textAlign: "left"}}
         experimentalFeatures={{ newEditingApi: true }}
       />
     </Box>
