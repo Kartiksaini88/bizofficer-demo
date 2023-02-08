@@ -13,16 +13,20 @@ import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
 import TableChartSharpIcon from "@mui/icons-material/TableChartSharp";
 import BasicModal from "./Modal/Modal";
 import FormModal from "./FormModal/FormModal";
-import { Radio } from "@mui/material";
+
 import BasicSelect from "./Select/Select";
+import { Modal, Typography } from "@mui/material";
+import { border, fontSize } from "@mui/system";
+import { hover } from "@testing-library/user-event/dist/hover";
+
 const columns = [
-  { field:"",headerName:"",
-   renderCell:(cellValue)=>{
-    return(
-      <input type={'radio'} name="row" className="radiobtn"></input>
-    )
-   }
-},
+  {
+    field: "",
+    headerName: "",
+    renderCell: (cellValue) => {
+      return <input type={"radio"} name="row" className="radiobtn"></input>;
+    },
+  },
   { field: "id", headerName: "#", width: 90 },
   {
     field: "Case_number",
@@ -245,19 +249,31 @@ const cases = [
     text: "Project Manager",
   },
 ];
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 270,
+  bgcolor: 'background.paper',
+  border: 'none',
+  boxShadow: 24,
+  p: 4,
+};
 export default function DataTable() {
   const [data, setdata] = React.useState(Tabledata);
-  const [OneData, setOneData] = React.useState(0);
+  const [OneData, setOneData] = React.useState("");
   const [search, setsearch] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [openform, setOpenFrom] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleOpenForm = () => setOpenFrom(true);
   const handleCloseForm = () => setOpenFrom(false);
-  const [edit, setEdit] = React.useState(false)
-  const deleteRow = (id) => {
-    setdata(data.filter((e) => e.id !== id));
+  const [edit, setEdit] = React.useState(false);
+  const [openbtn, setOpenbtn] = React.useState(false);
+  const handleOpenbtn = () => setOpenbtn(true);
+  const handleClosebtn = () => setOpenbtn(false);
+
+  const opendeleteModal = () => {
+    setOpenbtn(true )
   };
 
   const searchData = () => {
@@ -303,30 +319,97 @@ export default function DataTable() {
     }
   };
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleOpenForm = () => {
+    if (!edit) {
+      setOneData("");
+      setOpenFrom(true);
+    } else {
+      setOpenFrom(true);
+    }
+  };
 
-  const editdata = () =>{
-    setEdit(!edit)
-    handleOpenForm()
-  }
+  const editdata = () => {
+    setEdit(true);
+    handleOpenForm();
+  };
 
   const getData = (e, formdata) => {
     e.preventDefault();
-   if(formdata !== null){
-    setdata([...data, formdata]);
-    handleCloseForm();
-    setEdit(false)
-   }
-   else{
-    return
-   }
-    
-   
+
+    if (formdata !== null) {
+      setdata([...data, formdata]);
+      handleCloseForm();
+      setEdit(false)
+    } else {
+      return;
+    }
   };
+  const formopenadd = ()=>{
+    setEdit(false)
+    setOneData('')
+    setOpenFrom(true)
+  }
+
+  const handleOperations = (pramps) => {
+    setOneData(pramps);
+    setEdit(true);
+  };
+
+  const deleterow = (id)=>{
+    setdata(data.filter((e)=>e.id!==id))
+    handleClosebtn()
+  }
   return (
     <Box sx={{ height: 590, width: "100%" }}>
+       <Modal 
+        open={openbtn}
+        onClose={handleClosebtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        
+        <Box sx={style}>
+        <Typography id="modal-modal-description" sx={{}}>
+            Alert
+          </Typography>
+        <Typography id="modal-modal-description" sx={{
+          color:"rgb(120,120,120)",
+          fontSize:14,
+          paddingTop:2.5,
+          paddingBottom:2.5,
+        }}>
+            Are you sure, You want to delete this case
+          </Typography>
+          <div style={{
+            display:"flex",
+            gap:20,
+            justifyContent:"flex-end",
+            
+          }}><Button sx={{
+            height:"32px",
+            width:140,
+            marginTop:1,
+            fontSize:12,
+            color:"black",
+            border:"2px solid rgb(218,218,218)"
+            }} variant="outlined" onClick={handleClosebtn}>DON'T DELETE</Button>
+          <Button  variant="contained" sx={{
+            height:"30px",
+            width:140,
+            backgroundColor:"rgb(245,0,87)",
+            marginTop:1,
+            fontSize:12,
+          }} onClick={()=>deleterow(OneData.id)}>YES, DELETE
+          </Button></div>
+          
+        </Box>
+      </Modal>
       <FormModal
         getData={getData}
         info={OneData}
+        edit={edit}
         openform={openform}
         handleCloseForm={handleCloseForm}
         handleOpenForm={handleOpenForm}
@@ -338,10 +421,10 @@ export default function DataTable() {
         handleOpen={handleOpen}
       ></BasicModal>
       <div className="select-div">
-        <BasicSelect data={channel}  lable={"Channels"}></BasicSelect>
-        <BasicSelect data={caseType}    lable={"Type"}></BasicSelect>
-        <BasicSelect data={status}    lable={"Status"}></BasicSelect>
-        <BasicSelect data={cases}   lable={"Cases"}></BasicSelect>
+        <BasicSelect data={channel} lable={"Channels"}></BasicSelect>
+        <BasicSelect data={caseType} lable={"Type"}></BasicSelect>
+        <BasicSelect data={status} lable={"Status"}></BasicSelect>
+        <BasicSelect data={cases} lable={"Cases"}></BasicSelect>
         <input
           type="text"
           className="search"
@@ -381,7 +464,7 @@ export default function DataTable() {
             }}
           ></CalendarMonthSharpIcon>
           <AddCircleIcon
-            onClick={handleOpenForm}
+            onClick={formopenadd}
             sx={{
               height: 50,
               textAlign: "center",
@@ -389,10 +472,10 @@ export default function DataTable() {
               color: "rgb(25,118,210)",
             }}
           ></AddCircleIcon>
-          {OneData !== 0 ? (
+          {OneData !== '' ? (
             <>
               <BorderColorSharpIcon
-              onClick={()=>editdata(OneData.id)}
+                onClick={() => editdata(OneData.id)}
                 sx={{
                   height: 50,
                   textAlign: "center",
@@ -401,7 +484,7 @@ export default function DataTable() {
                 }}
               ></BorderColorSharpIcon>
               <DeleteRoundedIcon
-                onClick={() => deleteRow(OneData.id)}
+                onClick={opendeleteModal}
                 sx={{
                   height: 50,
                   textAlign: "center",
@@ -426,8 +509,8 @@ export default function DataTable() {
       <DataGrid
         rows={data}
         columns={columns}
-        onCellClick={(e) => setOneData(e.row)}
-        sx={{ fontSize: 11, textAlign: "left"}}
+        onCellClick={(e) => handleOperations(e.row)}
+        sx={{ fontSize: 11, textAlign: "left" }}
         experimentalFeatures={{ newEditingApi: true }}
       />
     </Box>

@@ -38,7 +38,7 @@ export default function FormModal(props) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <p className="p">New Case</p>
+        <p className="p">{props.edit?"Edit Case":"New Case"}</p>
         <div className="container">
           <form action="" className="form">
             <div>
@@ -47,7 +47,9 @@ export default function FormModal(props) {
                 required={true}
                 type="text"
                 name="Account_Name"
+                value={props.info.Account_Name}
                 id=""
+               
                 className="forminput"
                 placeholder="Account Name"
               />
@@ -57,6 +59,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Address"
                 id=""
+                value={props.info.Address}
                 className="forminput"
                 placeholder="Address"
               />
@@ -66,6 +69,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Agent"
                 id=""
+                value={props.info.Agent}
                 className="forminput"
                 placeholder="Agent"
               />
@@ -75,6 +79,7 @@ export default function FormModal(props) {
                 type="number"
                 name="Amount"
                 id=""
+                value={props.info.Amount}
                 className="forminput"
                 placeholder="Amount"
               />
@@ -84,6 +89,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Billable"
                 id=""
+                value={props.info.Billable}
                 className="forminput"
                 placeholder="Billable"
               />
@@ -93,8 +99,9 @@ export default function FormModal(props) {
                 type="text"
                 name="Case_number"
                 id=""
+                value={props.info.Case_number}
                 className="forminput"
-                placeholder="Case_number"
+                placeholder="Case number"
               />
               <input
                 onChange={handleChange}
@@ -102,6 +109,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Channel"
                 id=""
+                value={props.info.Channel}
                 className="forminput"
                 placeholder="Channel"
               />
@@ -111,6 +119,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Comments"
                 id=""
+                value={props.info.Comments}
                 className="forminput"
                 placeholder="Comments"
               />
@@ -120,6 +129,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Contact_Name"
                 id=""
+                value={props.info.Contact_Name}
                 className="forminput"
                 placeholder="Contact Name"
               />
@@ -130,6 +140,7 @@ export default function FormModal(props) {
                 name="Mobile"
                 id=""
                 className="forminput"
+                value={props.info.Mobile}
                 placeholder="Mobile"
               />
               <input
@@ -138,12 +149,13 @@ export default function FormModal(props) {
                 type="date"
                 name="Opened_Time"
                 id=""
+                value={props.info.Opened_Time}
                 className="forminput"
                 placeholder="Opened Time"
               />
               <div>
-                <Checkbox  label="Billable" /><span>Billable</span>
-                <Checkbox  lable="Package Services" /><span>Package Services</span>
+                <Checkbox  label="Billable" checked={props.info.Billable}/><span>Billable</span>
+                <Checkbox  lable="Package Services"  checked={props.info.Package}/><span>Package Services</span>
               </div>
             </div>
             <div>
@@ -153,6 +165,7 @@ export default function FormModal(props) {
                 type="number"
                 name="Phone"
                 id=""
+                value={props.info.Phone}
                 className="forminput"
                 placeholder="Phone"
               />
@@ -162,6 +175,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Priority"
                 id=""
+                value={props.info.Priority}
                 className="forminput"
                 placeholder="Priority"
               />
@@ -171,6 +185,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Product"
                 id=""
+                value={props.info.Product}
                 className="forminput"
                 placeholder="Product"
               />
@@ -180,6 +195,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Remarks"
                 id=""
+                value={props.info.Remarks}
                 className="forminput"
                 placeholder="Remarks"
               />
@@ -189,6 +205,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Status"
                 id=""
+                value={props.info.Status}
                 className="forminput"
                 placeholder="Status"
               />
@@ -270,6 +287,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Sub_Status"
                 id=""
+                value={props.info.Sub_Status}
                 className="forminput"
                 placeholder="Sub Status"
               />
@@ -279,6 +297,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Technician"
                 id=""
+                value={props.info.Technician}
                 className="forminput"
                 placeholder="Technician"
               />
@@ -288,6 +307,7 @@ export default function FormModal(props) {
                 type="date"
                 name="Technician_Date_Time"
                 id=""
+                value={props.info.Technician_Date_Time}
                 className="forminput"
                 placeholder="Technician Date Time"
               />
@@ -297,6 +317,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Technician_Status"
                 id=""
+                value={props.info.Technician_Status}
                 className="forminput"
                 placeholder="Technician Status"
               />
@@ -306,6 +327,7 @@ export default function FormModal(props) {
                 type="text"
                 name="Title"
                 id=""
+                value={props.info.Title}
                 className="forminput"
                 placeholder="Title"
               />
