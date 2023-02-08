@@ -421,10 +421,12 @@ export default function DataTable() {
         handleOpen={handleOpen}
       ></BasicModal>
       <div className="select-div">
-        <BasicSelect data={channel} lable={"Channels"}></BasicSelect>
+        <div className="inner-select-div">
+          <BasicSelect data={channel} lable={"Channels"}></BasicSelect>
         <BasicSelect data={caseType} lable={"Type"}></BasicSelect>
         <BasicSelect data={status} lable={"Status"}></BasicSelect>
-        <BasicSelect data={cases} lable={"Cases"}></BasicSelect>
+        <BasicSelect data={cases} lable={"Cases"}></BasicSelect></div>
+        
         <input
           type="text"
           className="search"

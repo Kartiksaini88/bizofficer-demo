@@ -29,7 +29,8 @@ export default function BasicModal(props) {
           <h4>Replacement</h4>
           <hr />
           <div className="container1">
-            <div><div className="keydiv">
+            <div>
+              <div className="keydiv">
               <p>Case Number</p>
               <p>Status</p>
               <p>Case Type</p>

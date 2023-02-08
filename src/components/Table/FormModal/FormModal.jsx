@@ -154,8 +154,8 @@ export default function FormModal(props) {
                 placeholder="Opened Time"
               />
               <div>
-                <Checkbox  label="Billable" checked={props.info.Billable}/><span>Billable</span>
-                <Checkbox  lable="Package Services"  checked={props.info.Package}/><span>Package Services</span>
+                <Checkbox  label="Billable" checked={props.info.Billable}/><span className="span">Billable</span>
+                <Checkbox  lable="Package Services"  checked={props.info.Package}/><span className="span">Package Services</span>
               </div>
             </div>
             <div>
@@ -333,8 +333,7 @@ export default function FormModal(props) {
               />
             </div>
           </form>
-        </div>
-        <Button
+          <Button
           sx={{
             textAlign: "center",
             cursor: "pointer",
@@ -358,6 +357,8 @@ export default function FormModal(props) {
         >
           Save
         </Button>
+        </div>
+       
       </Box>
     </Modal>
   );

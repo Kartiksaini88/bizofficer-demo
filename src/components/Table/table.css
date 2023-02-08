@@ -3,6 +3,10 @@
     justify-content: flex-start;
     
 }
+.inner-select-div{
+    display: flex;
+    justify-content: flex-start;
+}
 
 .icons{
     display: flex;
@@ -26,3 +30,14 @@
     width: 100px;
     height: 20px;
 }
+@media only screen and (max-width: 600px) {
+    .inner-select-div{
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 1px;
+    }
+    .select-div{
+        display: block;
+    }
+  }

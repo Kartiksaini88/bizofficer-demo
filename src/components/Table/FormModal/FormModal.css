@@ -26,3 +26,30 @@ form{
     border-radius: 4px;
     padding-left: 1rem;
 }
+
+
+/* @media only screen and (max-width: 600px) {
+    form{
+        display: block;
+    }
+    form > div{
+        width: 90%;
+    }
+    .forminput{
+        height: 35px;
+        width: 100%;
+        margin: 5px;
+        border: 1.3px solid rgb(203,203,203);
+        border-radius: 4px;
+        padding-left: 1rem;
+    }
+    .span{
+        font-size: 11px;
+    }
+    .container{
+        border: 1px solid red;
+        height: 100%;
+        width: 100%;
+        overflow: scroll;
+    }
+  } */
