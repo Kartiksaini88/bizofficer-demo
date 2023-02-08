@@ -24,7 +24,7 @@
     width: 45%;
 }
 
-/* 
+
 @media only screen and (max-width: 600px) {
     .container1{
        font-size: 10px;
@@ -34,4 +34,4 @@
         display: flex;
         justify-content: space-evenly;
     }
-  } */
+  } 
